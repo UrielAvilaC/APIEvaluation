@@ -1,0 +1,11 @@
+C:\Users\uriel\source\repos\APIEval\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\uriel\source\repos\APIEval\Model\bin\Debug\Model.dll.config
+C:\Users\uriel\source\repos\APIEval\Model\bin\Debug\Model.dll
+C:\Users\uriel\source\repos\APIEval\Model\bin\Debug\Model.pdb
+C:\Users\uriel\source\repos\APIEval\Model\bin\Debug\EntityFramework.dll
+C:\Users\uriel\source\repos\APIEval\Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\uriel\source\repos\APIEval\Model\bin\Debug\EntityFramework.xml
+C:\Users\uriel\source\repos\APIEval\Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\uriel\source\repos\APIEval\Model\obj\Debug\Model.csproj.CopyComplete
+C:\Users\uriel\source\repos\APIEval\Model\obj\Debug\Model.dll
+C:\Users\uriel\source\repos\APIEval\Model\obj\Debug\Model.pdb
