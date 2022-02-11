@@ -14,6 +14,12 @@ namespace Model
     
     public partial class Product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product()
+        {
+            this.LogProducts = new HashSet<LogProduct>();
+        }
+    
         public int Id { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
@@ -22,8 +28,13 @@ namespace Model
         public int RegistrationPerson { get; set; }
         public int Estatus { get; set; }
         public string Type { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
+        public Nullable<int> UpdatePerson { get; set; }
     
         public virtual Estatu Estatu { get; set; }
         public virtual Person Person { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LogProduct> LogProducts { get; set; }
+        public virtual Person Person1 { get; set; }
     }
 }

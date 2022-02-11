@@ -7,6 +7,18 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Description" Type="varchar(max)" Nullable="false" />
   </EntityType>
+  <EntityType Name="LogProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Product" Type="int" Nullable="false" />
+    <Property Name="Person" Type="int" Nullable="false" />
+    <Property Name="DatetimeAffect" Type="datetime" Nullable="false" />
+    <Property Name="Type" Type="varchar(max)" Nullable="false" />
+    <Property Name="OldValues" Type="varchar(max)" />
+    <Property Name="NewValues" Type="varchar(max)" />
+  </EntityType>
   <EntityType Name="Person">
     <Key>
       <PropertyRef Name="Id" />
@@ -30,6 +42,8 @@
     <Property Name="RegistrationPerson" Type="int" Nullable="false" />
     <Property Name="Estatus" Type="int" Nullable="false" />
     <Property Name="Type" Type="varchar(max)" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="UpdatePerson" Type="int" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -40,6 +54,30 @@
     <Property Name="User" Type="varchar(max)" Nullable="false" />
     <Property Name="Password" Type="varchar(max)" Nullable="false" />
   </EntityType>
+  <Association Name="FK_LogProduct_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="LogProduct" Type="Self.LogProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LogProduct">
+        <PropertyRef Name="Person" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LogProduct_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="LogProduct" Type="Self.LogProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LogProduct">
+        <PropertyRef Name="Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Person_Estatus">
     <End Role="Estatus" Type="Self.Estatus" Multiplicity="1" />
     <End Role="Person" Type="Self.Person" Multiplicity="*" />
@@ -76,6 +114,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Product_Person1">
+    <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="UpdatePerson" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_User_Person">
     <End Role="Person" Type="Self.Person" Multiplicity="1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -90,9 +140,18 @@
   </Association>
   <EntityContainer Name="CatalogDataModelStoreContainer">
     <EntitySet Name="Estatus" EntityType="Self.Estatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LogProduct" EntityType="Self.LogProduct" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_LogProduct_Person" Association="Self.FK_LogProduct_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="LogProduct" EntitySet="LogProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LogProduct_Product" Association="Self.FK_LogProduct_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="LogProduct" EntitySet="LogProduct" />
+    </AssociationSet>
     <AssociationSet Name="FK_Person_Estatus" Association="Self.FK_Person_Estatus">
       <End Role="Estatus" EntitySet="Estatus" />
       <End Role="Person" EntitySet="Person" />
@@ -102,6 +161,10 @@
       <End Role="Product" EntitySet="Product" />
     </AssociationSet>
     <AssociationSet Name="FK_Product_Person" Association="Self.FK_Product_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Person1" Association="Self.FK_Product_Person1">
       <End Role="Person" EntitySet="Person" />
       <End Role="Product" EntitySet="Product" />
     </AssociationSet>

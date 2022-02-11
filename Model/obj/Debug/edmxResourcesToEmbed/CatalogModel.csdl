@@ -22,6 +22,8 @@
     <NavigationProperty Name="Estatu" Relationship="Self.FK_Person_Estatus" FromRole="Person" ToRole="Estatus" />
     <NavigationProperty Name="Products" Relationship="Self.FK_Product_Person" FromRole="Person" ToRole="Product" />
     <NavigationProperty Name="Users" Relationship="Self.FK_User_Person" FromRole="Person" ToRole="User" />
+    <NavigationProperty Name="LogProducts" Relationship="CatalogDataModel.FK_LogProduct_Person" FromRole="Person" ToRole="LogProduct" />
+    <NavigationProperty Name="Products1" Relationship="CatalogDataModel.FK_Product_Person1" FromRole="Person" ToRole="Product" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
@@ -37,6 +39,10 @@
     <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Estatu" Relationship="Self.FK_Product_Estatus" FromRole="Product" ToRole="Estatus" />
     <NavigationProperty Name="Person" Relationship="Self.FK_Product_Person" FromRole="Product" ToRole="Person" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatePerson" Type="Int32" />
+    <NavigationProperty Name="LogProducts" Relationship="CatalogDataModel.FK_LogProduct_Product" FromRole="Product" ToRole="LogProduct" />
+    <NavigationProperty Name="Person1" Relationship="CatalogDataModel.FK_Product_Person1" FromRole="Product" ToRole="Person" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -117,5 +123,68 @@
       <End Role="Person" EntitySet="People" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
+    <EntitySet Name="LogProducts" EntityType="CatalogDataModel.LogProduct" />
+    <AssociationSet Name="FK_LogProduct_Person" Association="CatalogDataModel.FK_LogProduct_Person">
+      <End Role="Person" EntitySet="People" />
+      <End Role="LogProduct" EntitySet="LogProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LogProduct_Product" Association="CatalogDataModel.FK_LogProduct_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="LogProduct" EntitySet="LogProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Person1" Association="CatalogDataModel.FK_Product_Person1">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="LogProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product" Type="Int32" Nullable="false" />
+    <Property Name="Person" Type="Int32" Nullable="false" />
+    <Property Name="DatetimeAffect" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OldValues" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Person1" Relationship="CatalogDataModel.FK_LogProduct_Person" FromRole="LogProduct" ToRole="Person" />
+    <NavigationProperty Name="Product1" Relationship="CatalogDataModel.FK_LogProduct_Product" FromRole="LogProduct" ToRole="Product" />
+    <Property Name="NewValues" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_LogProduct_Person">
+    <End Type="CatalogDataModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="CatalogDataModel.LogProduct" Role="LogProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LogProduct">
+        <PropertyRef Name="Person" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LogProduct_Product">
+    <End Type="CatalogDataModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="CatalogDataModel.LogProduct" Role="LogProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LogProduct">
+        <PropertyRef Name="Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Person1">
+    <End Type="CatalogDataModel.Person" Role="Person" Multiplicity="0..1" />
+    <End Type="CatalogDataModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="UpdatePerson" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

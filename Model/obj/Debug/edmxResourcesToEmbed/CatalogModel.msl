@@ -24,6 +24,8 @@
     <EntitySetMapping Name="Products">
       <EntityTypeMapping TypeName="CatalogDataModel.Product">
         <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="UpdatePerson" ColumnName="UpdatePerson" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Code" ColumnName="Code" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -42,6 +44,19 @@
           <ScalarProperty Name="Person" ColumnName="Person" />
           <ScalarProperty Name="User1" ColumnName="User" />
           <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogProducts">
+      <EntityTypeMapping TypeName="CatalogDataModel.LogProduct">
+        <MappingFragment StoreEntitySet="LogProduct">
+          <ScalarProperty Name="NewValues" ColumnName="NewValues" />
+          <ScalarProperty Name="OldValues" ColumnName="OldValues" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="DatetimeAffect" ColumnName="DatetimeAffect" />
+          <ScalarProperty Name="Person" ColumnName="Person" />
+          <ScalarProperty Name="Product" ColumnName="Product" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

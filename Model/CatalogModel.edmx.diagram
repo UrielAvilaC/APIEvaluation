@@ -13,6 +13,10 @@
         <AssociationConnector Association="CatalogDataModel.FK_Product_Estatus" ManuallyRouted="false" />
         <AssociationConnector Association="CatalogDataModel.FK_Product_Person" ManuallyRouted="false" />
         <AssociationConnector Association="CatalogDataModel.FK_User_Person" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CatalogDataModel.LogProduct" Width="1.5" PointX="7.5" PointY="3.125" />
+        <AssociationConnector Association="CatalogDataModel.FK_LogProduct_Person" />
+        <AssociationConnector Association="CatalogDataModel.FK_LogProduct_Product" />
+        <AssociationConnector Association="CatalogDataModel.FK_Product_Person1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

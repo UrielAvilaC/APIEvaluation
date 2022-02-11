@@ -27,7 +27,7 @@ namespace API.Controllers
                 var resultSet = authData.Auth(ViewModel);
                 if (resultSet.Success)
                 {
-                    HttpContext.Current.Session.Add("UserId", resultSet.ObjectResult.UserId);
+                 HttpContext.Current.Cache["UserId"] = resultSet.ObjectResult.UserId;
 
                 }
                 return Ok(resultSet);

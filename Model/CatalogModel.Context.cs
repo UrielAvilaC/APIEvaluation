@@ -19,12 +19,6 @@ namespace Model
             : base("name=CatalogDataEntities")
         {
         }
-
-        public CatalogDataEntities(string connectionString)
-            : base(connectionString)
-        {
-
-        }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -35,5 +29,6 @@ namespace Model
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<LogProduct> LogProducts { get; set; }
     }
 }

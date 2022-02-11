@@ -19,6 +19,8 @@ namespace Model
         {
             this.Products = new HashSet<Product>();
             this.Users = new HashSet<User>();
+            this.LogProducts = new HashSet<LogProduct>();
+            this.Products1 = new HashSet<Product>();
         }
     
         public int Id { get; set; }
@@ -33,5 +35,9 @@ namespace Model
         public virtual ICollection<Product> Products { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LogProduct> LogProducts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products1 { get; set; }
     }
 }
